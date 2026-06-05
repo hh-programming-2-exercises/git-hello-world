@@ -1,0 +1,26 @@
+# This file defines a GitHub Actions workflow that runs grading when a student pushes to their repository.
+
+name: Grading
+
+on:
+  - push
+  - workflow_dispatch
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  build:
+    name: Grading
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'push' || github.event.head_commit.message != 'Initial commit' }}
+
+    steps:
+      # Checkout the repository
+      - uses: actions/checkout@v4
+
+      # Run grading
+      - name: Grade
+        run: chmod +x .grading/grade.sh && .grading/grade.sh

@@ -1,0 +1,9 @@
+{
+    "tests": [
+      {
+        "name": "Hello world",
+        "run": "chmod +x .grading/test.sh && .grading/test.sh",
+        "points": 1
+      }
+    ]
+  }
